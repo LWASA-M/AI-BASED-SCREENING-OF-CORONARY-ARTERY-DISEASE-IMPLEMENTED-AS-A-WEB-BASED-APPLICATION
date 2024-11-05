@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Asses your risk - inner</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static '/assets/img/hearticon.png'%}" rel="icon">
+  <link href="{% static '/assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static '/assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/vendor/boxicons/css/boxicons.min.css '%}" rel="stylesheet">
+  <link href="{% static '/assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center ">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div class="logo">
+        <h1><a href="{% url 'index' %}">MoyoGuard</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <a href="{% url 'index' %}"><img src="{% static '/assets/img/hearticon.png' %}" alt="" class="img-fluid"></a>
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+              <li><a class="nav-link scrollto" href="{% url 'index' %}#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'index' %}#about">About</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'index' %}#features">Explore CAD</a></li>
+          <li class="dropdown"><a href="#"><span>Risk assessment</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Physician</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="{% url 'index' %}#footer">Contact</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Assess a patient</h2>
+          <ol>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li>Asses a patient</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <section class="inner-page">
+      <div class="container">
+        <p>
+          The below information is to be filled by a physician only.
+        </p>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+<!-- ======= Contact Section ======= -->
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="col-lg-8 mt-5 mt-lg-0" data-aos="fade-left">
+      <form action="{% url 'view_results' %}" method="post" role="form" class="php-email-form">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-md-6 form-group">
+            <input type="text" name="name" class="form-control" id="name" placeholder="Patient's Name" required>
+          </div>
+          <div class="col-md-6 form-group mt-3 mt-md-0">
+            <input type="number" class="form-control" name="age" id="age" placeholder="What's the age of the patient" required>
+          </div>
+        </div>
+        <div class="col-md-6 form-group mt-3 mt-md-0" style="margin-bottom: 30px;">
+          <label for="weight">Weight:</label>
+          <input type="number" class="form-control" name="weight" id="weight" placeholder="What's the weight of the patient in Kg?" required>
+        </div>
+        <div class="col-md-6 form-group mt-3 mt-md-0" style="margin-bottom: 30px;">
+          <label for="height">Height:</label>
+          <input type="number" class="form-control" name="height" id="height" placeholder="What's the height of the patient in Cm?" required>
+        </div>
+        <div id="bmi-result" class="col-md-6 form-group mt-3 mt-md-0" style="margin-bottom: 30px;"></div>
+        <div class="col-md-6 form-group mt-3 mt-md-0" style="margin-bottom: 30px;">
+          <label for="sex">Sex:</label>
+          <select class="form-control" name="sex" id="sex" required>
+            <option value="text" disabled selected>Select Sex</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div class="col-md-6 form-group mt-3 mt-md-0" style="margin-bottom: 30px;">
+          <label for="diabetic">Diabetic status:</label>
+          <select class="form-control" name="diabetic" id="diabetic" required>
+            <option value="text" disabled selected>What's the diabetic status of the patient?</option>
+            <option value="Diabetic">Diabetic</option>
+            <option value="Non Diabetic">Non Diabetic</option>
+          </select>
+        </div>
+        <div class="col-md-6 form-group mt-3 mt-md-0" style="margin-bottom: 30px;">
+          <label for="dbp">Diastolic Blood Pressure:</label>
+          <input type="number" class="form-control" name="dbp" id="dbp" placeholder="Input the Diastolic Blood Pressure of the patient" required>
+        </div>
+        <div class="col-md-6 form-group mt-3 mt-md-0" style="margin-bottom: 30px;">
+          <label for="sbp">Systolic Blood Pressure:</label>
+          <input type="number" class="form-control" name="sbp" id="sbp" placeholder="Input the Systolic Blood Pressure of the patient" required>
+        </div>
+        <div id="bp-result" class="col-md-6 form-group mt-3 mt-md-0" style="margin-bottom: 30px;"></div>
+        <div class="col-md-6 form-group mt-3 mt-md-0" style="margin-bottom: 30px;">
+          <label for="csm">Current smoking status:</label>
+          <select class="form-control" name="csm" id="csm" required>
+            <option value="text" disabled selected>What's the current smoking status of the patient?</option>
+            <option value="smoker">smoker</option>
+            <option value="Non smoker">Non smoker</option>
+          </select>
+        </div>
+        <div class="form-group mt-3">
+          <label for="contacts">Contact Information:</label>
+          <textarea id="contacts" class="form-control" name="Physician's contact details" rows="5" placeholder="Physician's Name, contact and Working Institution" required></textarea>
+        </div>
+        <div class="my-3">
+          <div class="loading">Loading</div>
+          <div class="error-message"></div>
+          <div class="sent-message">Your message has been sent. Thank you!</div>
+        </div>
+        <div class="text-center"><button type="button" id="submitBtn" style="background-color: #ef6603; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 5px;">View Summary</button></div>
+      </form>
+
+      <!-- Modal -->
+      <div id="summaryModal" class="modal">
+        <div class="modal-content">
+          <span class="close" style="color: #ef6603; font-size: 24px; cursor: pointer; position: absolute; top: 10px; left: 10px;">&times;</span>
+         <h3 style="color: #ef6603; font-size: 24px; font-weight: bold; text-align: center;">Summary of Patient's Information</h3>
+          <div id="summaryContent"></div>
+          <div class="text-center"><button id="confirmSubmit" type="submit" style="background-color: #ef6603; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 5px;">Submit</button></div>
+        </div>
+      </div>
+      <!-- End Modal -->
+      <div class="result-container">
+           <!-- Result will be injected here by JavaScript -->
+
+      </div>
+
+    </div>
+  </div>
+</section><!-- End Contact Section -->
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <h3>MoyoGuard</h3>
+      <p>A path to a healthier future</p>
+      <div class="social-links">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+      <div class="copyright">
+        &copy; Copyright <strong><span>MoyoGuard</span></strong>. All Rights Reserved
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static '/assets/vendor/aos/aos.js' %}" ></script>
+  <script src="{% static '/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static '/assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static '/assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static '/assets/vendor/swiper/swiper-bundle.min.js '%}"></script>
+  <script src="{% static '/assets/vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static '/assets/js/main.js' %}"></script>
+
+</body>
+
+</html>
